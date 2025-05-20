@@ -12,6 +12,8 @@ function Homepage() {
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
+
+  console.log(products)
   return (
     <Container maxW="container.xl" py={12}>
       <VStack spacing={8} align="stretch">
@@ -22,7 +24,9 @@ function Homepage() {
         </Text>
 
         <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={10} w={"100%"}>
-          {products.map((product) => (
+          {products
+          .filter((product) => product && product._id) 
+          .map((product) => (
               <ProductCard key={product._id} product={product} />
           ))}
         </SimpleGrid>
